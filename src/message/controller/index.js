@@ -13,7 +13,7 @@ export default class extends Base {
   }
   async addMessageAction() {//已验证
     let model = this.model('message');
-    let userId = await this.session('userId') || 'admin';
+    let userId = await this.session('username') || 'admin';
     let message = this.post('message');
     let messageId = await model.add({
       'from': userId,

@@ -10,16 +10,15 @@
 </template>    
 
 <script>
-import axios from 'axios';
 export default {
     methods: {
         sendMessage() {
             let message = this.$refs.messageInput.value;
-            axios.post('http://localhost:8360/message/index/add_message',{
+            this.$axios.post('http://localhost:8360/message/index/add_message',{
                 'message': message,
                 'to': 'admin'
             }).then(response => {
-                if (!response.errno) {
+                if (!response.data.errno) {
                     alert('添加成功');
                     this.$refs.messageInput.value = '';
                 }

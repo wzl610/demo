@@ -5,8 +5,9 @@
 export default {
   //key: value
   cors:{
-    origin: '*',
+    origin: 'http://localhost:8086',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false
+    preflightContinue: false,
+    credentials: true
   }
 };

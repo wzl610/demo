@@ -19,8 +19,8 @@
             <a @click="submit">{{ login ? '登录' : '注册' }}</a>
         </form>
         <div style="margin-top:300px;">
-            <a @click="login = true;">登录</a>
-            <a @click="login = false">注册</a>
+            <a @click="login = true;resetForm();">登录</a>
+            <a @click="login = false;resetForm();">注册</a>
         </div>
     </div>
 </template>    
@@ -37,17 +37,41 @@ export default {
     },
     methods: {
         submit() {
-            if (login) {
-                this.login();
+            if (this.login) {
+                this.loginFn();
             } else {
                 this.register();
             }
-        }
-        login() {
-
-        }
+        },
+        loginFn() {
+            
+        },
         register() {
-            if ()
+            if (this.username == '' || this.password == '') {
+                alert('请填写资料');
+                return;
+            }
+            if (this.password !== this.rePassword) {
+                alert('两次密码输入不一致');
+                return;
+            }
+            this.$axios.post('http://localhost:8360/personal/index/register',{
+                'username': this.username,
+                'password': this.password
+            }).then(response => {
+                if (response.data.errno != 1001) {
+                    alert('注册成功！');
+                } else {
+                    alert('用户名已存在!');
+                }
+            }).catch(e => {
+                console.log(e);
+            })
+        },
+        resetForm() {
+            this.username = '';
+            this.password = '';
+            this.rePassword = '';
         }
     }
 }

@@ -7,8 +7,9 @@ export default class extends Base {
    * index action
    * @return {Promise} []
    */
-  indexAction(){
+  async indexAction(){
     //auto render template file index_index.html
+    await this.session('userId', 'wzl610');
     return this.display();
   }
 }

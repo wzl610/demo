@@ -3,21 +3,38 @@
         <div class="message-container">
         </div>
         <div class="form-container">
-            <input type="text"/>
+            <input type="text" ref="messageInput"/>
+            <a @click="sendMessage">发送</a>
         </div>   
     </div>
 </template>    
 
 <script>
+import axios from 'axios';
 export default {
-
+    methods: {
+        sendMessage() {
+            let message = this.$refs.messageInput.value;
+            axios.post('http://localhost:8360/message/index/add_message',{
+                'message': message,
+                'to': 'admin'
+            }).then(response => {
+                if (!response.errno) {
+                    alert('添加成功');
+                    this.$refs.messageInput.value = '';
+                }
+            }).catch(e => {
+                console.log(e);
+            })
+        }
+    }
 }
 
 </script>
 
 <style lang="css">
     .chat-container{
-        height:100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
     }

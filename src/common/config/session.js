@@ -5,8 +5,8 @@
  */
 export default {
   name: 'thinkjs',
-  type: 'file',
-  secret: 'Q#PEM765',
+  type: 'db',
+  secret: '`IQ%CDXF',
   timeout: 24 * 3600,
   cookie: { // cookie options
     length: 32,

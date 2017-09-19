@@ -27,9 +27,20 @@
 
 <script>
 export default {
+    mounted() {
+        this.$axios.get('http://localhost:8360/personal/index/index',{
+    
+        }).then(response => {
+            if (!response.data.errno) {
+                location.href = '/#/chat'
+            }
+        }).catch(e => {
+            console.log(e);
+        })
+    },
     data() {
         return {
-            login: false,
+            login: true,
             username: '',
             password: '',
             rePassword: ''
@@ -44,7 +55,18 @@ export default {
             }
         },
         loginFn() {
-            
+            this.$axios.post('http://localhost:8360/personal/index/login',{
+                'username': this.username,
+                'password': this.password
+            }).then(response => {
+                if (response.data.errno) {
+                    alert('用户名或者密码错误!');
+                } else {
+                    alert('登录成功!');
+                }
+            }).catch(e => {
+                console.log(e);
+            })
         },
         register() {
             if (this.username == '' || this.password == '') {

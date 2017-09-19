@@ -5,7 +5,6 @@ import Chat from '../components/Chat.vue';
 import User from '../components/User.vue';
 import Index from '../components/Index.vue';
 import axios from 'axios';
-
 axios.defaults.withCredentials=true;
 Vue.prototype.$axios = axios;
 

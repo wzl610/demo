@@ -24,7 +24,7 @@ export default class extends Base {
     if (messageId) {
       this.success();
     } else {
-      this.fail(1000, 'ADD ERROR');
+      this.fail(1000);
     }
   }
 
@@ -36,7 +36,7 @@ export default class extends Base {
   
   async queryMessageByUserAction() {
     let model = this.model('message');
-    let userId = await this.session('userId');
+    let userId = await this.session('username');
     let data = await model.where(`from = ${userId} OR to = ${userId}`).select();
     this.success(data);
   }

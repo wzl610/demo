@@ -3,14 +3,15 @@
     <div class="content">
       <router-view></router-view>
     </div>
+    <div class="tabbar" v-if="$route.path=='/chat' || $route.path == '/user'">
+      <router-link to="/chat"><i class="fa fa-wechat fa-2x"></i></router-link>
+      <router-link to="/user"><i class="fa fa-user fa-2x"></i></router-link>
+    </div>
   </div>
 </template>
 
 <script>
-/* <div class="tabbar">
-      <router-link to="/chat"><i class="fa fa-wechat fa-2x"></i></router-link>
-      <router-link to="/user"><i class="fa fa-user fa-2x"></i></router-link>
-    </div> */
+
   import 'font-awesome/css/font-awesome.css'
   export default {
     data() {

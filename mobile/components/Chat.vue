@@ -1,6 +1,14 @@
 <template>
     <div class="chat-container">
         <div class="message-container">
+            <ul>
+                <li v-for="item in messageList" :class="{mine: item.send != 'admin'}">
+                    <img src="../public/img/head.jpg"/>
+                    <div>
+                        <p>{{item.message}}</p>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="form-container">
             <input type="text" ref="messageInput"/>
@@ -11,20 +19,40 @@
 
 <script>
 export default {
+    mounted() {
+        this.$axios.post('http://localhost:8360/message/index/query_message_by_user',{
+            
+        }).then(response => {
+            if (response.data.errno == 1004) {
+                location.href = '/#/index'
+            }
+            this.messageList = response.data.data;
+        }).catch(e => {
+            console.log(e);
+        })
+    },
     methods: {
         sendMessage() {
             let message = this.$refs.messageInput.value;
             this.$axios.post('http://localhost:8360/message/index/add_message',{
                 'message': message,
-                'to': 'admin'
+                'receiver': 'admin'
             }).then(response => {
                 if (!response.data.errno) {
-                    alert('添加成功');
+                    this.messageList.push({
+                        'send': 'mine',
+                        'message': message
+                    })
                     this.$refs.messageInput.value = '';
                 }
             }).catch(e => {
                 console.log(e);
             })
+        }
+    },
+    data() {
+        return {
+            messageList: ''
         }
     }
 }
@@ -36,9 +64,11 @@ export default {
         height: 100%;
         display: flex;
         flex-direction: column;
+        background-color: #ebebeb;
     }
     .message-container{
         flex: 1;
+        overflow: auto;
     }
     .form-container{
         height: 40px;
@@ -83,4 +113,33 @@ export default {
         transition: border-color .2s cubic-bezier(.645,.045,.355,1);
         width: 80%;
     }
+    .message-container {
+        padding-top: 25px;
+    }
+    .message-container li{
+        display: flex;
+        padding: 0 50px 18px 18px;
+    }
+    .message-container img{
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+    .message-container p{
+        font-size: 14px;
+        color: #0d0d0d;
+        background-color: #fff;
+        padding: 13px;
+    }
+    .message-container li.mine{
+        flex-direction: row-reverse;
+        padding: 0 18px 18px 50px;
+    }
+    .message-container .mine p{
+        background-color: #a2e854;
+    }
+    .message-container .mine img{
+        margin-left: 10px;
+    }
+    
 </style>

@@ -63,6 +63,7 @@ export default {
                     alert('用户名或者密码错误!');
                 } else {
                     alert('登录成功!');
+                    location.href = '/#/chat'
                 }
             }).catch(e => {
                 console.log(e);

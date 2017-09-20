@@ -16,8 +16,8 @@ export default class extends Base {
     let userId = await this.session('username') || 'admin';
     let message = this.post('message');
     let messageId = await model.add({
-      'from': userId,
-      'to': this.post('to'),
+      'send': userId,
+      'receiver': this.post('receiver'),
       'message': message,
       'date': Date.now()
     });
@@ -30,14 +30,17 @@ export default class extends Base {
 
   async queryAllMessageAction() {
     let model = this.model('message');
-    let data = await model.where({to: 'admin'}).page(this.get("page"), 10).countSelect();
+    let data = await model.where({receiver: 'admin'}).page(this.get("page"), 10).countSelect();
     this.success(data);
   }
   
   async queryMessageByUserAction() {
-    let model = this.model('message');
     let userId = await this.session('username');
-    let data = await model.where(`from = ${userId} OR to = ${userId}`).select();
+    if (!userId) {
+      this.fail(1004);
+    }
+    let model = this.model('message');
+    let data = await model.where(`send = '${userId}' OR receiver = '${userId}'`).select();
     this.success(data);
   }
 

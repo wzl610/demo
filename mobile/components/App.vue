@@ -42,6 +42,7 @@ html,body{
 }
 .content{
   flex:1;
+  overflow: auto;
 }
 .tabbar{
   background-color:#fff;

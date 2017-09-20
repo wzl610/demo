@@ -11,7 +11,7 @@ Vue.prototype.$axios = axios;
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '', component: Index},
+  { path: '/index', component: Index},
   { path: '/chat', component: Chat },
   { path: '/user', component: User }
 ];

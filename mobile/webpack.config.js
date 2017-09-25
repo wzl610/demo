@@ -36,6 +36,10 @@ module.exports = {
       }
     ]
   },
+  vue: {
+    // 使用用户自定义的 postcss 插件
+    postcss: [require('autoprefixer')()]
+  },
   devServer: {
     historyApiFallback: true,
     noInfo: true

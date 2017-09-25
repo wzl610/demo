@@ -3,27 +3,27 @@
         <form action="#">
             <div>
                 <label>
-                    用户名: <input type="text" name="username" v-model="username"/> 
+                    <input type="text" name="username" v-model="username" placeholder="登录"/> 
                 </label>
             </div>
             <div>
                 <label>
-                    密码: <input type="password" name="password" v-model="password"/> 
+                    <input type="password" name="password" v-model="password" placeholder="密码"/> 
                 </label>
             </div>
             <div v-show="!login">
                 <label>
-                    重复新密码: <input type="password" name="rePassword" v-model="rePassword"/> 
+                    <input type="password" name="rePassword" v-model="rePassword" placeholder="重复密码"/> 
                 </label>
             </div>
-            <a @click="submit">{{ login ? '登录' : '注册' }}</a>
+            <a class="btn" @click="submit">{{ login ? '立即登录' : '立即注册' }}</a>
+            <div class="link-wrap">
+                <a v-if="!login" @click="login = true;resetForm();">已有账号?登录</a>
+                <a v-else @click="login = false;resetForm();">暂无账号？注册</a>
+            </div>
         </form>
-        <div style="margin-top:300px;">
-            <a @click="login = true;resetForm();">登录</a>
-            <a @click="login = false;resetForm();">注册</a>
-        </div>
     </div>
-</template>    
+</template>
 
 <script>
 export default {
@@ -62,7 +62,6 @@ export default {
                 if (response.data.errno) {
                     alert('用户名或者密码错误!');
                 } else {
-                    alert('登录成功!');
                     location.href = '/#/chat'
                 }
             }).catch(e => {
@@ -101,6 +100,45 @@ export default {
 
 </script>
 
-<style lang="css">
-   
+<style scoped>
+   body{
+       background: linear-gradient(to  bottom right, #6dcab5, #3879c9);
+    }
+    form{
+        text-align:center;
+        position: absolute;
+        top: 8.0267rem;
+        width: 100%;
+    }
+   input{
+       border: 1px solid #a4e3ff;
+       background-color: transparent;
+       color: #baf0fa;
+       height: 1.2667rem;
+       border-radius: 1.2667rem;
+       text-indent: 0.5733rem;
+       line-height: 1.2667rem;
+       margin-bottom: 0.48rem;
+   }
+   input::placeholder{
+       color: #baf0fa;
+   }
+   form .btn{
+       display: inline-block;
+       width: 7.7333rem;
+       height: 1.2267rem;
+       line-height: 1.2267rem;
+       text-align: center;
+       background-color: #56b4f4;
+       color: #fff;
+       border-radius: 1.2267rem;
+   }
+   .link-wrap{
+       width:100%;
+       margin-top: 0.2667rem;
+       text-align: center;
+   }
+   .link-wrap a{
+       color: #fff;
+   }
 </style>

@@ -46,12 +46,12 @@ html,body{
 }
 .tabbar{
   background-color:#fff;
-  padding-top:10px;
+  padding-top:0.2667rem;
   border-top:1px solid #ccc;
   display: flex;
   justify-content: space-around ;
-  height: 40px;
-  line-height: 40px;
+  height: 1.0667rem;
+  line-height: 1.0667rem;
 }
 .tabbar a{
   color:#999

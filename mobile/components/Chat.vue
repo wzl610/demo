@@ -59,7 +59,7 @@ export default {
 
 </script>
 
-<style lang="css">
+<style scoped>
     .chat-container{
         height: 100%;
         display: flex;
@@ -71,7 +71,7 @@ export default {
         overflow: auto;
     }
     .form-container{
-        height: 40px;
+        height: 1.0333rem;
     }
     button{
         display: inline-block;
@@ -90,9 +90,8 @@ export default {
         -moz-user-select: none;
         -webkit-user-select: none;
         -ms-user-select: none;
-        padding: 10px 15px;
-        font-size: 14px;
-        border-radius: 4px;
+        padding: 0.2666rem 0.4rem;
+        border-radius: 0.1033rem;
     }
     input {
         -webkit-appearance: none;
@@ -100,46 +99,45 @@ export default {
         appearance: none;
         background-color: #fff;
         background-image: none;
-        border-radius: 4px;
+        border-radius: 0.0533rem;
         border: 1px solid #bfcbd9;
         box-sizing: border-box;
         color: #1f2d3d;
         display: inline-block;
         font-size: inherit;
-        height: 36px;
+        height: 0.96rem;
         line-height: 1;
         outline: none;
-        padding: 3px 10px;
+        padding: 0.08rem 0.2666rem;
         transition: border-color .2s cubic-bezier(.645,.045,.355,1);
         width: 80%;
     }
     .message-container {
-        padding-top: 25px;
+        padding-top: 0.64rem;
     }
     .message-container li{
         display: flex;
-        padding: 0 50px 18px 18px;
+        padding: 0 0.24rem 0.4rem 0.24rem;
     }
     .message-container img{
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
+        width: 1.1067rem;
+        height: 1.1067rem;
+        margin-right: 0.2667rem;
     }
     .message-container p{
-        font-size: 14px;
         color: #0d0d0d;
         background-color: #fff;
-        padding: 13px;
+        padding: 0.24rem;
     }
     .message-container li.mine{
         flex-direction: row-reverse;
-        padding: 0 18px 18px 50px;
+        padding: 0 0.24rem 0.4rem 0.24rem;
     }
     .message-container .mine p{
         background-color: #a2e854;
     }
     .message-container .mine img{
-        margin-left: 10px;
+        margin-left: 0.2667rem;
     }
     
 </style>

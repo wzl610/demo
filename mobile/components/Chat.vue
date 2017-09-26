@@ -1,6 +1,6 @@
 <template>
     <div class="chat-container">
-        <div class="message-container">
+        <div class="message-container" id="message-container">
             <ul>
                 <li v-for="item in messageList" :class="{mine: item.send != 'admin'}">
                     <img src="../public/img/head.jpg"/>
@@ -53,6 +53,13 @@ export default {
     data() {
         return {
             messageList: ''
+        }
+    },
+    watch: {
+        messageList() {
+            this.$nextTick(() => {
+                document.getElementById('message-container').scrollTop = document.getElementById('message-container').scrollHeight;
+            })  
         }
     }
 }
